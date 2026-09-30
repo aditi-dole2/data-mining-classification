@@ -1,0 +1,90 @@
+> df = read.csv((file("C:/Users/Aditi/OneDrive/Desktop/Data Analysis/data mining/r/wine.csv")))
+> shapiro.test(df$Phenols)
+
+	Shapiro-Wilk normality test
+
+data:  df$Phenols
+W = 0.97668, p-value = 0.004395
+
+> shapiro.test(df$Flavanoids)
+
+	Shapiro-Wilk normality test
+
+data:  df$Flavanoids
+W = 0.95453, p-value = 1.679e-05
+
+> shapiro.test(df$Nonflavanoid.phenols)
+
+	Shapiro-Wilk normality test
+
+data:  df$Nonflavanoid.phenols
+W = 0.96252, p-value = 0.0001055
+
+> cor.test((df$Phenols,df$Flavanoids),(df$Nonflavanoid.phenols,df$Flavanoids))
+Error: unexpected ',' in "cor.test((df$Phenols,"
+> cor.test(df$Phenols,df$Flavanoids,df$Nonflavanoid.phenols,df$Flavanoids)
+Error in match.arg(alternative) : 
+  'arg' must be NULL or a character vector
+> cor.test(df$Phenols,df$Flavanoids) cor.test(df$Nonflavanoid.phenols,df$Flavanoids)
+Error: unexpected symbol in "cor.test(df$Phenols,df$Flavanoids) cor.test"
+> cor.test(df$Phenols,df$Flavanoids); cor.test(df$Nonflavanoid.phenols,df$Flavanoids)
+
+	Pearson's product-moment correlation
+
+data:  df$Phenols and df$Flavanoids
+t = 22.824, df = 176, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.8220088 0.8975164
+sample estimates:
+      cor 
+0.8645635 
+
+
+	Pearson's product-moment correlation
+
+data:  df$Nonflavanoid.phenols and df$Flavanoids
+t = -8.465, df = 176, p-value = 9.739e-15
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.6347638 -0.4243914
+sample estimates:
+       cor 
+-0.5378996 
+
+> cor(df,y= NULL,use="everything",method =c("pearson"))
+                            Wine     Alcohol  Malic.acid          Ash         Acl          Mg     Phenols Flavanoids Nonflavanoid.phenols      Proanth   Color.int         Hue
+Wine                  1.00000000 -0.32822194  0.43777620 -0.049643221  0.51785911 -0.20917939 -0.71916334 -0.8474975            0.4891092 -0.499129824  0.26566757 -0.61736921
+Alcohol              -0.32822194  1.00000000  0.09439694  0.211544596 -0.31023514  0.27079823  0.28910112  0.2368149           -0.1559295  0.136697912  0.54636420 -0.07174720
+Malic.acid            0.43777620  0.09439694  1.00000000  0.164045470  0.28850040 -0.05457510 -0.33516700 -0.4110066            0.2929771 -0.220746187  0.24898534 -0.56129569
+Ash                  -0.04964322  0.21154460  0.16404547  1.000000000  0.44336719  0.28658669  0.12897954  0.1150773            0.1862304  0.009651935  0.25888726 -0.07466689
+Acl                   0.51785911 -0.31023514  0.28850040  0.443367187  1.00000000 -0.08333309 -0.32111332 -0.3513699            0.3619217 -0.197326836  0.01873198 -0.27395522
+Mg                   -0.20917939  0.27079823 -0.05457510  0.286586691 -0.08333309  1.00000000  0.21440123  0.1957838           -0.2562940  0.236440610  0.19995001  0.05539820
+Phenols              -0.71916334  0.28910112 -0.33516700  0.128979538 -0.32111332  0.21440123  1.00000000  0.8645635           -0.4499353  0.612413084 -0.05513642  0.43368134
+Flavanoids           -0.84749754  0.23681493 -0.41100659  0.115077279 -0.35136986  0.19578377  0.86456350  1.0000000           -0.5378996  0.652691769 -0.17237940  0.54347857
+Nonflavanoid.phenols  0.48910916 -0.15592947  0.29297713  0.186230446  0.36192172 -0.25629405 -0.44993530 -0.5378996            1.0000000 -0.365845099  0.13905701 -0.26263963
+Proanth              -0.49912982  0.13669791 -0.22074619  0.009651935 -0.19732684  0.23644061  0.61241308  0.6526918           -0.3658451  1.000000000 -0.02524993  0.29554425
+Color.int             0.26566757  0.54636420  0.24898534  0.258887259  0.01873198  0.19995001 -0.05513642 -0.1723794            0.1390570 -0.025249931  1.00000000 -0.52181319
+Hue                  -0.61736921 -0.07174720 -0.56129569 -0.074666889 -0.27395522  0.05539820  0.43368134  0.5434786           -0.2626396  0.295544253 -0.52181319  1.00000000
+OD                   -0.78822959  0.07234319 -0.36871043  0.003911231 -0.27676855  0.06600394  0.69994936  0.7871939           -0.5032696  0.519067096 -0.42881494  0.56546829
+Proline              -0.63371678  0.64372004 -0.19201056  0.223626264 -0.44059693  0.39335085  0.49811488  0.4941931           -0.3113852  0.330416700  0.31610011  0.23618345
+                               OD    Proline
+Wine                 -0.788229589 -0.6337168
+Alcohol               0.072343187  0.6437200
+Malic.acid           -0.368710428 -0.1920106
+Ash                   0.003911231  0.2236263
+Acl                  -0.276768549 -0.4405969
+Mg                    0.066003936  0.3933508
+Phenols               0.699949365  0.4981149
+Flavanoids            0.787193902  0.4941931
+Nonflavanoid.phenols -0.503269596 -0.3113852
+Proanth               0.519067096  0.3304167
+Color.int            -0.428814942  0.3161001
+Hue                   0.565468293  0.2361834
+OD                    1.000000000  0.3127611
+Proline               0.312761075  1.0000000
+> res_cor =cor(df,y= NULL,use="everything",method =c("pearson"))
+> corrplot::corrplot.mixed(res_cor)
+> corrplot::corrplot(res_cor,method = c("number"))
+
+
